@@ -3,9 +3,15 @@ package com.example.gestoreCampi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+
 import java.util.Set;
 
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @Data
 @Entity
 @Table(name="user")

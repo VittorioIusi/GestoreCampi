@@ -1,11 +1,16 @@
 package com.example.gestoreCampi.entities;
 
 
-import lombok.Data;
+import lombok.*;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import java.util.Date;
 
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @Data
 @Entity
 @Table(name="booking")
