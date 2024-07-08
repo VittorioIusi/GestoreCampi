@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CourtServices {
+public class CourtService {
     @Autowired
     CourtRepository courtRepo;
 
