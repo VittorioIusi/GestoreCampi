@@ -3,14 +3,14 @@ server:
 
 spring:
   application:
-    name: ProgettoPsw
+    name: gestoreCampi
   datasource:
     url: jdbc:mysql://localhost:3306/rovito
     username: root
-    password: Marianna1&mysqlroot
+    password: Sql1
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
   security:
     oauth2:
       resourceserver:

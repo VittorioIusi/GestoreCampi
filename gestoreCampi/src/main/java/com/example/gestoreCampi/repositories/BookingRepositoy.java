@@ -13,8 +13,8 @@ import java.util.Date;
 
 public interface BookingRepositoy extends JpaRepository<Booking, Integer> {
 
-    Booking findByID(int id);
-    boolean existByCourtAndData(Court court, String data); //vedo se il campo è occupato in quell'ora
+    Booking findById(int id);
+    boolean existsByCourtAndData(Court court, String data); //vedo se il campo è occupato in quell'ora
 
 
     List<Booking> findByBuyer(User buyer);

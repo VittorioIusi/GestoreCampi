@@ -33,7 +33,7 @@ public class BookingService {
         if(booking.getBuyer()==null)
             throw new NullBuyerException();
         Court c = courtRepo.findById(booking.getCourt().getId());
-        boolean courtIsBooked = bookingRepo.existByCourtAndData(booking.getCourt(),booking.getData());//se esisite una entry con la stessa data per lo stesso campo e occupato
+        boolean courtIsBooked = bookingRepo.existsByCourtAndData(booking.getCourt(),booking.getData());//se esisite una entry con la stessa data per lo stesso campo e occupato
         if(courtIsBooked)
             throw new CourtAlreadyBookedException();
         return bookingRepo.save(booking);
