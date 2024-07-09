@@ -2,6 +2,7 @@ package com.example.gestoreCampi.services;
 
 import com.example.gestoreCampi.entities.User;
 import com.example.gestoreCampi.repositories.UserRepository;
+import com.example.gestoreCampi.support.exception.EmailAlreadyUsedException;
 import com.example.gestoreCampi.support.exception.UserNotFoundException;
 import jakarta.ws.rs.core.Response;
 import org.keycloak.OAuth2Constants;
@@ -86,9 +87,9 @@ public class AccountingService {
 
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public User addUser(User user,String password) throws UserNotFoundException {
-        if(!userRepo.existsByEmail(user.getEmail()))
-            throw new UserNotFoundException();
+    public User addUser(User user,String password) throws EmailAlreadyUsedException {
+        if(userRepo.existsByEmail(user.getEmail()))
+            throw new EmailAlreadyUsedException();
 
         Keycloak keycloak = KeycloakBuilder.builder()
                 .serverUrl(serverUrl)
