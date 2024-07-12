@@ -1,3 +1,4 @@
+
 package com.example.gestoreCampi.configurations;
 
 import org.keycloak.adapters.KeycloakConfigResolver;
@@ -12,3 +13,4 @@ public class KeycloakConfig { //serve a risolvere il path di Keycloak.json
         return new KeycloakSpringBootConfigResolver();
     }
 }
+

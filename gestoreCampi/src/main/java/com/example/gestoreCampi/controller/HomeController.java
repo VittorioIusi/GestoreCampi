@@ -3,7 +3,7 @@ package com.example.gestoreCampi.controller;
 import com.example.gestoreCampi.entities.User;
 import com.example.gestoreCampi.services.AccountingService;
 import com.example.gestoreCampi.services.BookingService;
-import com.example.gestoreCampi.support.authentication.Utils;
+import com.example.gestoreCampi.configurations.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

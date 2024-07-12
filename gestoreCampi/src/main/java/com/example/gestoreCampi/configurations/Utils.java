@@ -1,4 +1,4 @@
-package com.example.gestoreCampi.support.authentication;
+package com.example.gestoreCampi.configurations;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.log4j.Log4j2;
@@ -31,6 +31,5 @@ public class Utils {
     public String getId(){
         return getToken().getId();
     }
-
 
 }

@@ -4,7 +4,7 @@ import com.example.gestoreCampi.entities.User;
 import com.example.gestoreCampi.repositories.UserRepository;
 import com.example.gestoreCampi.support.exception.EmailAlreadyUsedException;
 import com.example.gestoreCampi.support.exception.UserNotFoundException;
-import jakarta.ws.rs.core.Response;
+import javax.ws.rs.core.Response;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
@@ -91,6 +91,7 @@ public class AccountingService {
         if(userRepo.existsByEmail(user.getEmail()))
             throw new EmailAlreadyUsedException();
 
+
         Keycloak keycloak = KeycloakBuilder.builder()
                 .serverUrl(serverUrl)
                 .realm(realm)
@@ -101,6 +102,8 @@ public class AccountingService {
                 .password(passwordAdmin)
                 .build();
 
+
+
         //defineUser
         UserRepresentation userRepresentation = new UserRepresentation();
         userRepresentation.setEnabled(true);
@@ -110,8 +113,11 @@ public class AccountingService {
         userRepresentation.setLastName(user.getLastName());
 
         //get realm
+
         RealmResource realmResource = keycloak.realm(realm);
         UsersResource usersResource = realmResource.users();
+
+
 
         //create user
         Response response = usersResource.create(userRepresentation);
