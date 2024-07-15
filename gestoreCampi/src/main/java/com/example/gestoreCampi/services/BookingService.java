@@ -4,6 +4,7 @@ import com.example.gestoreCampi.entities.Booking;
 import com.example.gestoreCampi.entities.User;
 import com.example.gestoreCampi.repositories.BookingRepositoy;
 import com.example.gestoreCampi.repositories.CourtRepository;
+import com.example.gestoreCampi.repositories.UserRepository;
 import com.example.gestoreCampi.support.exception.CourtAlreadyBookedException;
 import com.example.gestoreCampi.support.exception.NullBuyerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,19 @@ public class BookingService {
     private BookingRepositoy bookingRepo;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private CourtRepository courtRepo;
 
     @Transactional(readOnly = false,propagation = Propagation.REQUIRED)
     public Booking addBooking(Booking booking) throws NullBuyerException, CourtAlreadyBookedException {
         if(booking.getBuyer()==null)
             throw new NullBuyerException();
+        User user = booking.getBuyer();
+        if (!userRepository.existsById(user.getId())) {
+            userRepository.save(user);
+        }
         Court c = courtRepo.findById(booking.getCourt().getId());
         boolean courtIsBooked = bookingRepo.existsByCourtAndData(booking.getCourt(),booking.getData());//se esisite una entry con la stessa data per lo stesso campo e occupato
         if(courtIsBooked)

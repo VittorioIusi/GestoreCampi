@@ -29,8 +29,9 @@ public class HomeController {
     }
 
     @RequestMapping("/getUser")
-    @PreAuthorize("hasRole('user')")
+    //@PreAuthorize("hasRole('user')")
     public User getUser() {
+        System.out.println("sono nel getuser");
         String email=Utils.getEmail();
         return accountingService.showByEmail(email);
     }

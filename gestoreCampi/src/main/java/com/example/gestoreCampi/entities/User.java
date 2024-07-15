@@ -47,4 +47,10 @@ public class User {
     private Set<Booking> bookingSet;
 
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                '}';
+    }
 }//User

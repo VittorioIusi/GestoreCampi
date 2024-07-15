@@ -33,7 +33,3 @@ auth-properties :
   usernameadmin : admin@admin.it
   passwordadmin : admin
   role : user
-
-
-
-

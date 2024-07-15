@@ -16,6 +16,8 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -29,8 +31,9 @@ public class AccountingController {
     private AccountingService accountingService;
 
     @PostMapping("/add")
-    public ResponseEntity create(@RequestBody @Valid UserReq userReq){
+    public ResponseEntity create(@RequestBody @Validated UserReq userReq){
         try{
+            System.out.println("sono nel controller,provo ad aggiungere "+userReq);
             User added = accountingService.addUser(userReq.getUser(),userReq.getPassword());
             return new ResponseEntity(added, HttpStatus.OK);
         }
@@ -55,7 +58,7 @@ public class AccountingController {
         return new ResponseEntity("User "+user.getEmail()+" succesfully deleted",HttpStatus.OK);
     }//delete
 
-
+    //@PreAuthorize("hasRole('admin')")
     @PostMapping("/delete/email")
     public ResponseEntity deleteEmail(@RequestParam String email){
         try {
@@ -89,7 +92,8 @@ public class AccountingController {
 
 
     @GetMapping("/token")
-    public ResponseEntity getToken(String user,String pass) throws IOException {
+    public ResponseEntity getToken(@RequestParam String user,@RequestParam String pass) throws IOException {
+        System.out.println("provo a prendere il token per:  "+user);
         String result = "";
         HttpPost post = new HttpPost("http://localhost:8080/realms/myrealm/protocol/openid-connect/token");
         post.setHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -115,4 +119,13 @@ public class AccountingController {
 class UserReq{
     private User user;
     private String password;
+
+
+    @Override
+    public String toString() {
+        return "UserReq{" +
+                "user=" + user +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

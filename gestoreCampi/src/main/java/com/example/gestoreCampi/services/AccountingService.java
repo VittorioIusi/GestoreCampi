@@ -88,9 +88,9 @@ public class AccountingService {
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public User addUser(User user,String password) throws EmailAlreadyUsedException {
+        System.out.println("sono nel service");
         if(userRepo.existsByEmail(user.getEmail()))
             throw new EmailAlreadyUsedException();
-
 
         Keycloak keycloak = KeycloakBuilder.builder()
                 .serverUrl(serverUrl)

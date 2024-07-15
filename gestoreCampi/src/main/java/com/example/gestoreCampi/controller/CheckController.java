@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/check")
 public class CheckController {
 
+
     @GetMapping("/simple")
     public ResponseEntity checkSimple(){
         return new ResponseEntity("tutto ok richiesta effetuata", HttpStatus.OK);
